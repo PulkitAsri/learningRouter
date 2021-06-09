@@ -1,31 +1,30 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Shop() {
+  //onMount function
+  useEffect(() => {
+    fetchItems();
+  }, []);
 
-    //onMount function
-    useEffect(() => {
-        fetchItems();
-    }, []);
+  const [productList, setProductList] = useState([]);
+  const fetchItems = async () => {
+    const data = await fetch("https://fakestoreapi.com/products");
+    const items = await data.json();
+    setProductList(items);
+    
+  };
 
-    const [productList,setProductList]=useState([]);
-    const fetchItems = async ()=>{
-        const data= await fetch(
-            "https://fakestoreapi.com/products"
-        );
-        const items= await data.json();
-        setProductList(items)
-        console.log(productList);
-    }
-
-
-
-    return (
-        <div>
-            {productList.map((item,index)=>{
-                return <div key={index}>{item.title}</div>
-            })}
+  return (
+    <div>
+    {    console.log(productList)}
+      {productList.map((item) => 
+        <div key={item.id}>
+          <Link to= {`/shop/${item.id}`}>{item.id} {item.title}</Link>  
         </div>
-    )
+      )}
+    </div>
+  );
 }
 
-export default Shop
+export default Shop;
