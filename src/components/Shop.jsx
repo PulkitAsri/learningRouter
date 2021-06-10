@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import ProductCard from "./ProductCard";
 
 function Shop() {
   //onMount function
@@ -12,17 +12,21 @@ function Shop() {
     const data = await fetch("https://fakestoreapi.com/products");
     const items = await data.json();
     setProductList(items);
-    
   };
 
   return (
     <div>
-    {    console.log(productList)}
-      {productList.map((item) => 
-        <div key={item.id}>
-          <Link to= {`/shop/${item.id}`}>{item.id} {item.title}</Link>  
+    
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-2 ">
+      {productList.map((item) => (
+        <div class="col">
+        <ProductCard
+          className="col"
+          item={item}
+        />
         </div>
-      )}
+      ))}
+    </div>
     </div>
   );
 }
