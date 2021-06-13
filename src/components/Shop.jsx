@@ -17,7 +17,7 @@ function Shop() {
   return (
     <div>
     
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-4 ">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-5 ">
       {productList.map((item) => (
         <div class="col p-2">
         <ProductCard
